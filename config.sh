@@ -44,6 +44,6 @@ function build_eccodes {
 
 function run_tests {
     # Runs tests on installed distribution from an empty directory
-    cp ../pygrib/test.py
+    cp ../pygrib/test.py .
     python test.py
 }
