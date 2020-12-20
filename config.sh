@@ -32,7 +32,7 @@ function build_eccodes {
     build_libpng
     build_openjpeg
     build_libaec
-    fetch_unpack https://confluence.ecmwf.int/download/attachments/45757960/eccodes-${ECCODES_VERSION}-Source.tar.gz?api=v2
+    fetch_unpack https://confluence.ecmwf.int/download/attachments/45757960/eccodes-${ECCODES_VERSION}-Source.tar.gz
     mkdir build
     cd build
     cmake -DENABLE_JPG_LIBOPENJPEG=ON -DENABLE_PNG=ON -DENABLE_AEC=ON -DENABLE_FORTRAN=OFF-DENABLE_NETCDF=OFF ../eccodes-${ECCODES_VERSION}-Source
