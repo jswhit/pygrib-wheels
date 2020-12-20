@@ -23,18 +23,21 @@ function build_libs {
 
 function build_eccodes {
     if [ -e eccodes-stamp ]; then return; fi
+    build_libpng
+    build_openjpep
+    build_libaec
     fetch_unpack https://confluence.ecmwf.int/download/attachments/45757960/eccodes-${ECCODES_VERSION}-Source.tar.gz?api=v2
     mkdir build
     cd build
     cmake -DENABLE_JPG_LIBOPENJPEG=ON -DENABLE_PNG=ON -DENABLE_AEC=ON -DENABLE_FORTRAN=OFF-DENABLE_NETCDF=OFF ../eccodes-${ECCODES_VERSION}-Source
     make -j2
     make install
+    cd ..
     touch eccodes-stamp
 }
 
 function run_tests {
     # Runs tests on installed distribution from an empty directory
-    python --version
-    echo "backend : agg" > matplotlibrc
-    pytest -v 
+    cp ../pygrib/test.py
+    python test.py
 }
