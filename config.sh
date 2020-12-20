@@ -19,7 +19,7 @@ function build_wheel {
 
 function build_libs {
     build_libpng
-    build_openjpep
+    build_openjpeg
     build_libaec
 #   if [ -z "$IS_OSX" ] && [ $MB_ML_VER -eq 1 ]; then
 #       export CFLAGS="-std=gnu99 -Wl,-strip-all"
