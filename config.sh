@@ -30,7 +30,7 @@ function build_libs {
 function build_eccodes {
     if [ -e eccodes-stamp ]; then return; fi
     build_libpng
-    build_openjpep
+    build_openjpeg
     build_libaec
     fetch_unpack https://confluence.ecmwf.int/download/attachments/45757960/eccodes-${ECCODES_VERSION}-Source.tar.gz?api=v2
     mkdir build
