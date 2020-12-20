@@ -7,9 +7,34 @@ function pre_build {
     :
 }
 
+# Compile libs for macOS 10.9 or later
+export MACOSX_DEPLOYMENT_TARGET="10.9"
+export ECCODES_VERSION="2.19.1"
+
+function build_libs {
+    build_libpng
+    build_openjpep
+    build_libaec
+#   if [ -z "$IS_OSX" ] && [ $MB_ML_VER -eq 1 ]; then
+#       export CFLAGS="-std=gnu99 -Wl,-strip-all"
+#    fi
+    build_eccodes
+}
+
+function build_eccodes {
+    if [ -e eccodes-stamp ]; then return; fi
+    fetch_unpack https://confluence.ecmwf.int/download/attachments/45757960/eccodes-${ECCODES_VERSION}-Source.tar.gz?api=v2
+    mkdir build
+    cd build
+    cmake -DENABLE_JPG_LIBOPENJPEG=ON -DENABLE_PNG=ON -DENABLE_AEC=ON -DENABLE_FORTRAN=OFF-DENABLE_NETCDF=OFF ../eccodes-${ECCODES_VERSION}-Source
+    make -j2
+    make install
+    touch eccodes-stamp
+}
+
 function run_tests {
     # Runs tests on installed distribution from an empty directory
     python --version
     echo "backend : agg" > matplotlibrc
-    pytest -s --doctest-modules --verbose --pyargs dipy
+    pytest -v 
 }
