@@ -11,6 +11,12 @@ function pre_build {
 export MACOSX_DEPLOYMENT_TARGET="10.9"
 export ECCODES_VERSION="2.19.1"
 
+function build_wheel {
+    source multibuild/library_builders.sh
+    build_libs
+    build_pip_wheel $@
+    }
+
 function build_libs {
     build_libpng
     build_openjpep
