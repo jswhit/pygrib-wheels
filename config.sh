@@ -43,6 +43,6 @@ function build_eccodes {
 }
 
 function run_tests {
-    cd ../pygrib
+    cd ../pygrib/test
     python test.py
 }
