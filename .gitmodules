@@ -1,3 +1,6 @@
 [submodule "multibuild"]
 	path = multibuild
 	url = https://github.com/matthew-brett/multibuild.git
+[submodule "pygrib"]
+	path = pygrib
+	url = https://github.com/jswhit/pygrib.git
