@@ -11,6 +11,7 @@ function pre_build {
 export MACOSX_DEPLOYMENT_TARGET="10.9"
 export ECCODES_VERSION="2.19.1"
 export OPENJPEG_VERSION="2.3.1"
+export PYGRIB_WHEEL=true
 
 function build_wheel {
     source multibuild/library_builders.sh
