@@ -48,7 +48,7 @@ function run_tests {
     pygribpath=`python -c "import pygrib, os ; print(os.path.dirname(pygrib.__file__))"`
     echo $pygribpath
     ls -l $pygribpath/..
-    datapath=`python -c "import pygrib; print(pygrib.eccodes_datadir)"`
+    datapath=`python -c "import pygrib; print(pygrib.get_definitions_path()"`
     echo $datapath
     ls -l $datapath
     python test.py
