@@ -102,7 +102,7 @@ jobs:
       if: github.event_name == 'create'
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file_glob: true
-        file: "${TRAVIS_BUILD_DIR}/wheelhouse/pygrib-2.1.2-cp38-cp38-manylinux2014_x86_64.whl"
+        file: ${{ github.workspace }}/wheelhouse/pygrib*whl
         tag: ${{ github.ref }}
         overwrite: true
+        file_glob: true
