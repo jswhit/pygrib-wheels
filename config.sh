@@ -44,7 +44,7 @@ function build_eccodes {
 
 function run_tests {
     cd ../pygrib/test
-    pygribpath=`python -c "import pygrib; print(pygrib._file__)"`
+    pygribpath=`python -c "import pygrib; print(pygrib.__file__)"`
     echo $pygribpath
     ls -l $pygribpath/..
     datapath=`python -c "import pygrib; print(pygrib.eccodes_datadir)"`
