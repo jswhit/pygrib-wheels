@@ -44,12 +44,5 @@ function build_eccodes {
 
 function run_tests {
     cd ../pygrib/test
-    echo $VIRTUAL_ENV
-    pygribpath=`python -c "import pygrib, os ; print(os.path.dirname(pygrib.__file__))"`
-    echo $pygribpath
-    ls -l $pygribpath/..
-    datapath=`python -c "import pygrib; print(pygrib.get_definitions_path())"`
-    echo $datapath
-    ls -l $datapath
     python test.py
 }
