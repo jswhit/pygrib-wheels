@@ -103,6 +103,6 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file_glob: true
-        file: "${TRAVIS_BUILD_DIR}/wheelhouse/*.whl"
+        file: "${TRAVIS_BUILD_DIR}/wheelhouse/pygrib-2.1.2-cp38-cp38-manylinux2014_x86_64.whl"
         tag: ${{ github.ref }}
         overwrite: true
