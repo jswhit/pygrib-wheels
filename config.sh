@@ -35,7 +35,7 @@ function build_eccodes {
     fetch_unpack https://confluence.ecmwf.int/download/attachments/45757960/eccodes-${ECCODES_VERSION}-Source.tar.gz
     mkdir build
     cd build
-    cmake -DENABLE_JPG_LIBOPENJPEG=ON -DENABLE_PNG=ON -DENABLE_AEC=ON -DENABLE_FORTRAN=OFF-DENABLE_NETCDF=OFF -DFORTRAN=OFF ../eccodes-${ECCODES_VERSION}-Source
+    cmake -DENABLE_JPG_LIBOPENJPEG=ON -DENABLE_PNG=ON -DENABLE_AEC=ON  -DENABLE_f95:BOOL=OFF -DENABLE_f77:BOOL=OFF -DENABLE_NETCDF=OFF ../eccodes-${ECCODES_VERSION}-Source
     make -j2
     make install
     cd ..
