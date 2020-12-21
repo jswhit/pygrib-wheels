@@ -52,4 +52,5 @@ function build_eccodes {
 function run_tests {
     cd ../pygrib/test
     python test.py
+    python test_latlons.py
 }
