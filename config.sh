@@ -35,10 +35,16 @@ function build_eccodes {
     fetch_unpack https://confluence.ecmwf.int/download/attachments/45757960/eccodes-${ECCODES_VERSION}-Source.tar.gz
     mkdir build
     cd build
-    cmake -DENABLE_FORTRAN=OFF -DENABLE_JPG_LIBJASPER=OFF -DENABLE_TESTS=OFF -DENABLE_JPG_LIBOPENJPEG=ON -DENABLE_PNG=ON -DENABLE_AEC=ON -DENABLE_NETCDF=OFF ../eccodes-${ECCODES_VERSION}-Source
+    cmake -DENABLE_FORTRAN=OFF -DENABLE_NETCDF=OFF -DENABLE_TESTS=OFF -DENABLE_JPG_LIBJASPER=OFF -DENABLE_JPG_LIBOPENJPEG=ON -DENABLE_PNG=ON -DENABLE_AEC=ON ../eccodes-${ECCODES_VERSION}-Source
     make -j2
     make install
     cd ..
+    if [ -n "$IS_OSX" ]; then
+        # Fix eccodes library id bug
+        for lib in $(ls ${BUILD_PREFIX}/lib/libeccodes*.dylib); do
+            install_name_tool -id $lib $lib
+        done
+    fi
     touch eccodes-stamp
 }
 
