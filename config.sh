@@ -16,8 +16,6 @@ function build_libs {
 
 function pre_build {
     echo "in pre-build $PWD"
-    ls -l 
-    ls -l pygrib
     export PYGRIB_DIR=$PWD/pygrib
     build_libs
 }
@@ -29,10 +27,6 @@ function build_eccodes {
     build_libaec
     fetch_unpack https://confluence.ecmwf.int/download/attachments/45757960/eccodes-${ECCODES_VERSION}-Source.tar.gz
     /bin/cp -r eccodes-${ECCODES_VERSION}-Source/definitions $PYGRIB_DIR/eccodes
-    echo "PYGRIB_DIR-$PYGRIB_DIR"
-    ls -l $PYGRIB_DIR
-    ls -l $PYGRIB_DIR/eccodes
-    ls -l $PYGRIB_DIR/eccodes/definitions
     /bin/mv $PYGRIB_DIR/eccodes/template.3.32769.def $PYGRIB_DIR/eccodes/definitions/grib2
     mkdir build
     cd build
