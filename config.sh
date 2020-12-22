@@ -13,20 +13,22 @@ export ECCODES_VERSION="2.19.1"
 export OPENJPEG_VERSION="2.3.1"
 export PYGRIB_WHEEL=true
 
-function build_wheel {
-    source multibuild/library_builders.sh
-    build_libs
-    build_pip_wheel $@
-    }
+#function build_wheel {
+#    source multibuild/library_builders.sh
+#    build_libs
+#    build_pip_wheel $@
+#    }
 
 function build_libs {
     build_libpng
     build_openjpeg
     build_libaec
-#   if [ -z "$IS_OSX" ] && [ $MB_ML_VER -eq 1 ]; then
-#       export CFLAGS="-std=gnu99 -Wl,-strip-all"
-#    fi
     build_eccodes
+}
+
+function pre_build {
+    export PYGRIB_DIR=$PWD/pygrib
+    build_libs
 }
 
 function build_eccodes {
@@ -35,6 +37,7 @@ function build_eccodes {
     build_openjpeg
     build_libaec
     fetch_unpack https://confluence.ecmwf.int/download/attachments/45757960/eccodes-${ECCODES_VERSION}-Source.tar.gz
+    /bin/cp -r ecodes-${ECCODES_VERSION}-Source/eccodes/definitions/ $PYGRIB_DIR/eccodes
     mkdir build
     cd build
     cmake -DENABLE_FORTRAN=OFF -DENABLE_NETCDF=OFF -DENABLE_TESTS=OFF -DENABLE_JPG_LIBJASPER=OFF -DENABLE_JPG_LIBOPENJPEG=ON -DENABLE_PNG=ON -DENABLE_AEC=ON ../eccodes-${ECCODES_VERSION}-Source
