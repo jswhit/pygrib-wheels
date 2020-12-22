@@ -31,7 +31,7 @@ function build_eccodes {
     build_openjpeg
     build_libaec
     fetch_unpack https://confluence.ecmwf.int/download/attachments/45757960/eccodes-${ECCODES_VERSION}-Source.tar.gz
-    /bin/cp -r eccodes-${ECCODES_VERSION}-Source/eccodes/definitions/ $PYGRIB_DIR/eccodes
+    /bin/cp -r eccodes-${ECCODES_VERSION}-Source/definitions/ $PYGRIB_DIR/eccodes
     mkdir build
     cd build
     cmake -DENABLE_FORTRAN=OFF -DENABLE_NETCDF=OFF -DENABLE_TESTS=OFF -DENABLE_JPG_LIBJASPER=OFF -DENABLE_JPG_LIBOPENJPEG=ON -DENABLE_PNG=ON -DENABLE_AEC=ON ../eccodes-${ECCODES_VERSION}-Source
