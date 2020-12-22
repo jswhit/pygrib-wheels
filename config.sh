@@ -15,6 +15,9 @@ function build_libs {
 }
 
 function pre_build {
+    echo "in pre-build $PWD"
+    ls -l 
+    ls -l pygrib
     export PYGRIB_DIR=$PWD/pygrib
     build_libs
 }
