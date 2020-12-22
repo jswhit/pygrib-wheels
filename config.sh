@@ -28,7 +28,8 @@ function build_eccodes {
     build_openjpeg
     build_libaec
     fetch_unpack https://confluence.ecmwf.int/download/attachments/45757960/eccodes-${ECCODES_VERSION}-Source.tar.gz
-    /bin/cp -r eccodes-${ECCODES_VERSION}-Source/definitions/ $PYGRIB_DIR/eccodes
+    /bin/cp -r eccodes-${ECCODES_VERSION}-Source/definitions $PYGRIB_DIR/eccodes
+    echo "PYGRIB_DIR-$PYGRIB_DIR"
     ls -l $PYGRIB_DIR
     ls -l $PYGRIB_DIR/eccodes
     ls -l $PYGRIB_DIR/eccodes/definitions
