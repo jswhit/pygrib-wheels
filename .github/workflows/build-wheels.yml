@@ -38,7 +38,7 @@ jobs:
     env:
       REPO_DIR: pygrib
       PKG_NAME: pygrib
-      BUILD_COMMIT: v2.1.2rel
+      BUILD_COMMIT: v2.1.3rel
       UNICODE_WIDTH: 32
       MB_PYTHON_VERSION: ${{ matrix.python-version }}
       TRAVIS_PYTHON_VERSION: ${{ matrix.python-version }}
