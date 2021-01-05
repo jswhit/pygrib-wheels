@@ -86,9 +86,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install virtualenv
-        pip install cmake
-        cmake_exec=`which cmake`
-        ln -fs ${cmake_exec} /usr/local/bin/cmake
 
     - name: Build and Install Wheels
       run: |
