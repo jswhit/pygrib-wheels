@@ -31,12 +31,14 @@ jobs:
         exclude:
           - os: macos-latest  
             platform: x32
+          - os: macos-latest  
+            MB_ML_VER: 1
+          - os: macos-latest  
+            MB_ML_VER: 2010
           - MB_ML_VER: 1
             python-version: "3.7"
-            os: macos-latest  
           - MB_ML_VER: 1
             python-version: "3.8"
-            os: macos-latest  
           - MB_ML_VER: 1
             python-version: "3.9"
     env:
