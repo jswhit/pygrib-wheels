@@ -33,20 +33,20 @@ jobs:
         os: [ubuntu-latest]
         platform: [x64]
         MB_ML_VER: [2010}
-        exclude:
-          - os: macos-latest  
-            platform: x32
-          - MB_ML_VER: 1
-            python-version: "3.7"
-            os: macos-latest  
-          - MB_ML_VER: 1
-            python-version: "3.8"
-            os: macos-latest  
-          - MB_ML_VER: 1
-            python-version: "3.9"
-            os: macos-latest  
-          - MB_ML_VER: 2010
-            os: macos-latest  
+#       exclude:
+#         - os: macos-latest  
+#           platform: x32
+#         - MB_ML_VER: 1
+#           python-version: "3.7"
+#           os: macos-latest  
+#         - MB_ML_VER: 1
+#           python-version: "3.8"
+#           os: macos-latest  
+#         - MB_ML_VER: 1
+#           python-version: "3.9"
+#           os: macos-latest  
+#         - MB_ML_VER: 2010
+#           os: macos-latest  
     env:
       REPO_DIR: pygrib
       PKG_NAME: pygrib
