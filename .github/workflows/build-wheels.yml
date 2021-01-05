@@ -32,7 +32,7 @@ jobs:
         python-version: ["3.8"]
         os: [ubuntu-latest]
         platform: [x64]
-        MB_ML_VER: 2010
+        MB_ML_VER: [2010}
         exclude:
           - os: macos-latest  
             platform: x32
