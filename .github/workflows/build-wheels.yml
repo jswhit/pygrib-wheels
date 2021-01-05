@@ -87,7 +87,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install virtualenv
         pip install cmake
-        which cmake
+        cmake_exec=`which cmake`
+        ln -fs ${cmake_exec} /usr/local/bin/cmake
+
     - name: Build and Install Wheels
       run: |
         source multibuild/common_utils.sh
