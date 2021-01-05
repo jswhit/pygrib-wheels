@@ -17,6 +17,9 @@ function build_libs {
 function pre_build {
     echo "in pre-build $PWD"
     export PYGRIB_DIR=$PWD/pygrib
+    pip install cmake>=3.12
+    cmake_exec=`which cmake`
+    ln -fs ${cmake_exec} /usr/local/bin/cmake
     build_libs
 }
 
