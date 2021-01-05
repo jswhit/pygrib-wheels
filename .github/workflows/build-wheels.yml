@@ -27,18 +27,18 @@ jobs:
         python-version: ["3.6", "3.7", "3.8", "3.9"]
         os: [ubuntu-latest, macos-latest]
         platform: [x64, x32]
+        MB_ML_VER: [1,2010]
 # test on a single platform, python version
 #       python-version: ["3.8"]
 #       os: [ubuntu-latest]
-#       platform: [x642]
-        MB_ML_VER: [2014]
+#       platform: [x64]
         exclude:
           - os: macos-latest  
             platform: x32
     env:
       REPO_DIR: pygrib
       PKG_NAME: pygrib
-      BUILD_COMMIT: v2.1.3rel
+      BUILD_COMMIT: v2.1.4rel
       UNICODE_WIDTH: 32
       MB_PYTHON_VERSION: ${{ matrix.python-version }}
       TRAVIS_PYTHON_VERSION: ${{ matrix.python-version }}
