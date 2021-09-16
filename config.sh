@@ -3,8 +3,9 @@
 
 # Compile libs for macOS 10.9 or later
 export MACOSX_DEPLOYMENT_TARGET="10.9"
-export ECCODES_VERSION="2.22.0"
-export OPENJPEG_VERSION="2.3.1"
+export ECCODES_VERSION="2.23.0"
+export OPENJPEG_VERSION="2.4.0"
+export LIBAEC_VERSION="1.0.5"
 export PYGRIB_WHEEL=true
 
 function build_libs {
