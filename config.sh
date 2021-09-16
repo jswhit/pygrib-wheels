@@ -49,6 +49,8 @@ function build_eccodes {
 
 function run_tests {
     cd ../pygrib/test
+    pwd
+    env | grep ECCODES
     python test.py
     cd ..
     #python utils/grib_list sampledata/rap.wrfnat.grib2 -s
