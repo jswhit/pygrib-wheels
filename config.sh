@@ -34,9 +34,11 @@ function build_eccodes {
     #/bin/mv $PYGRIB_DIR/eccodes/template.3.32769.def $PYGRIB_DIR/eccodes/definitions/grib2
     mkdir build
     cd build
-    cmake -DCMAKE_INSTALL_PREFIX=${BUILD_PREFIX} -DENABLE_FORTRAN=OFF -DENABLE_NETCDF=OFF -DENABLE_TESTS=OFF -DENABLE_JPG_LIBJASPER=OFF -DENABLE_JPG_LIBOPENJPEG=ON -DENABLE_PNG=ON -DENABLE_AEC=ON ../eccodes-${ECCODES_VERSION}-Source
+    cmake -DCMAKE_INSTALL_PREFIX=$BUILD_PREFIX -DENABLE_FORTRAN=OFF -DENABLE_NETCDF=OFF -DENABLE_TESTS=OFF -DENABLE_JPG_LIBJASPER=OFF -DENABLE_JPG_LIBOPENJPEG=ON -DENABLE_PNG=ON -DENABLE_AEC=ON ../eccodes-${ECCODES_VERSION}-Source
     make -j2
     make install
+    echo "BUILD_PREFIX = $BUILD_PREFIX"
+    ls -l ${BUILD_PREFIX}/share/eccodes/definitions
     cd ..
     if [ -n "$IS_OSX" ]; then
         # Fix eccodes library id bug
@@ -51,7 +53,8 @@ function run_tests {
     cd ../pygrib/test
     pwd
     env | grep ECCODES
-    ls -l $BUILD_PREFIX/share/eccodes/definitions
+    echo "BUILD_PREFIX = $BUILD_PREFIX"
+    ls -l ${BUILD_PREFIX}/share/eccodes/definitions
     python test.py
     cd ..
     #python utils/grib_list sampledata/rap.wrfnat.grib2 -s
