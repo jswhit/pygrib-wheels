@@ -28,10 +28,10 @@ jobs:
         #os: [ubuntu-latest, macos-latest]
         #platform: [x64, x32]
         #MB_ML_VER: [1,2010,2014]
-        python-version: "3.9"
-        os: ubuntu-latest
-        platform: x64
-        MB_ML_VER: 2014
+        python-version: ["3.9"]
+        os: [ubuntu-latest]
+        platform: [x64]
+        MB_ML_VER: [2014]
         exclude:
           - os: macos-latest  
             platform: x32
