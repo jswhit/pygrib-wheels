@@ -51,6 +51,7 @@ function run_tests {
     cd ../pygrib/test
     pwd
     env | grep ECCODES
+    ls -l /usr/local/share/eccodes/definitions
     python test.py
     cd ..
     #python utils/grib_list sampledata/rap.wrfnat.grib2 -s
