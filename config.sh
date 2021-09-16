@@ -37,6 +37,7 @@ function build_eccodes {
     cmake -DCMAKE_INSTALL_PREFIX=$BUILD_PREFIX -DENABLE_FORTRAN=OFF -DENABLE_NETCDF=OFF -DENABLE_TESTS=OFF -DENABLE_JPG_LIBJASPER=OFF -DENABLE_JPG_LIBOPENJPEG=ON -DENABLE_PNG=ON -DENABLE_AEC=ON ../eccodes-${ECCODES_VERSION}-Source
     make -j2
     make install
+    cd ..
     if [ -n "$IS_OSX" ]; then
         # Fix eccodes library id bug
         for lib in $(ls ${BUILD_PREFIX}/lib/libeccodes*.dylib); do
