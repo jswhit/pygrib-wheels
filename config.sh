@@ -50,10 +50,14 @@ function build_eccodes {
 }
 
 function run_tests {
+    pwd
+    which python
+    echo $PATH
     cd ../pygrib/test
     pwd
     env | grep ECCODES
     ls -l /usr/local/share
+    ls -l /usr/local/lib
     python test.py
     cd ..
     #python utils/grib_list sampledata/rap.wrfnat.grib2 -s
