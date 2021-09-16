@@ -3,7 +3,7 @@
 
 # Compile libs for macOS 10.9 or later
 export MACOSX_DEPLOYMENT_TARGET="10.9"
-export ECCODES_VERSION="2.23.0"
+export ECCODES_VERSION="2.22.0"
 export OPENJPEG_VERSION="2.3.1"
 export PYGRIB_WHEEL=true
 
@@ -50,5 +50,5 @@ function run_tests {
     cd ../pygrib/test
     python test.py
     cd ..
-    python utils/grib_list sampledata/rap.wrfnat.grib2 -s
+    #python utils/grib_list sampledata/rap.wrfnat.grib2 -s
 }
