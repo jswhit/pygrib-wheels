@@ -6,6 +6,8 @@ export MACOSX_DEPLOYMENT_TARGET="10.9"
 export ECCODES_VERSION="2.23.0"
 export OPENJPEG_VERSION="2.4.0"
 export LIBAEC_VERSION="1.0.5"
+export PNG_VERSION="1.6.37"
+export ZLIB_VERSION="1.2.11"
 export PYGRIB_WHEEL=true
 
 function build_libs {
