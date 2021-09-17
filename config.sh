@@ -30,8 +30,8 @@ function build_eccodes {
     build_openjpeg
     build_libaec
     fetch_unpack https://confluence.ecmwf.int/download/attachments/45757960/eccodes-${ECCODES_VERSION}-Source.tar.gz
-    /bin/cp -r eccodes-${ECCODES_VERSION}-Source/definitions $PYGRIB_DIR/share/eccodes
-    /bin/mv $PYGRIB_DIR/share/eccodes/template.3.32769.def $PYGRIB_DIR/share/eccodes/definitions/grib2
+    /bin/cp -r eccodes-${ECCODES_VERSION}-Source/definitions $PYGRIB_DIR/src/pygrib/share/eccodes
+    /bin/mv $PYGRIB_DIR/src/pygrib/share/eccodes/template.3.32769.def $PYGRIB_DIR/src/pygrib/share/eccodes/definitions/grib2
     mkdir build
     cd build
     cmake -DCMAKE_INSTALL_PREFIX=$BUILD_PREFIX -DENABLE_FORTRAN=OFF -DENABLE_NETCDF=OFF -DENABLE_TESTS=OFF -DENABLE_JPG_LIBJASPER=OFF -DENABLE_JPG_LIBOPENJPEG=ON -DENABLE_PNG=ON -DENABLE_AEC=ON ../eccodes-${ECCODES_VERSION}-Source
