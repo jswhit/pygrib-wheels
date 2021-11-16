@@ -80,7 +80,7 @@ jobs:
 
     - name: Build and Install Wheels
       run: |
-        pip install git+git://github.com/pyproj4/pyproj.git@v3.3.0rc0
+        pip install git+git://github.com/pyproj4/pyproj.git@v3.3rc0
         source multibuild/common_utils.sh
         source multibuild/travis_steps.sh
         echo "------- BEFORE INSTALL --------"
