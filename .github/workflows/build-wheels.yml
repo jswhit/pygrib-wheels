@@ -87,6 +87,7 @@ jobs:
         echo "------- CLEAN CODE --------"
         clean_code $REPO_DIR $BUILD_COMMIT
         echo "------- BUILD WHEEL --------"
+        python -m pip install --upgrade pip
         build_wheel $REPO_DIR $PLAT
         echo "------- INSTALL_RUN --------"
         install_run $PLAT
