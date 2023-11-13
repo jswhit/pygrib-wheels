@@ -89,8 +89,8 @@ jobs:
         echo "------- INSTALL_RUN --------"
         install_run $PLAT
         cd $TRAVIS_BUILD_DIR
-        echo "MB_ML_VER = $MB_ML_VER"
-        find ./ -name "pygrib*whl" -print
+        #echo "MB_ML_VER = $MB_ML_VER"
+        #find ./ -name "pygrib*whl" -print
         ls -l wheelhouse/pygrib*whl
     - name: Upload wheels to release
       uses: svenstaro/upload-release-action@v2
