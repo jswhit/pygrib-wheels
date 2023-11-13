@@ -5,7 +5,7 @@
 export MACOSX_DEPLOYMENT_TARGET="10.9"
 export ECCODES_VERSION="2.21.1"
 export OPENJPEG_VERSION="2.4.0"
-export LIBAEC_VERSION="1.0.5"
+export LIBAEC_VERSION="1.0.6"
 export PNG_VERSION="1.6.37"
 export ZLIB_VERSION="1.2.11"
 export PYGRIB_WHEEL=true
@@ -25,6 +25,24 @@ function pre_build {
     ln -fs ${cmake_exec} /usr/local/bin/cmake
     build_libs
 }
+
+function build_libaec {
+    if [ -e libaec-stamp ]; then return; fi
+    local root_name=v${LIBAEC_VERSION}
+    local tar_name=libaec-${root_name}.tar.gz
+    fetch_unpack https://gitlab.dkrz.de/k202009/libaec/-/archive/${root_name}/${tar_name}
+    #fetch_unpack https://gitlab.dkrz.de/k202009/libaec/uploads/45b10e42123edd26ab7b3ad92bcf7be2/libaec-1.0.6.tar.gz
+    if [ -n "$IS_MACOS" ]; then
+        brew install autoconf automake libtool
+    fi
+    (cd libaec-${root_name} \
+        && autoreconf -i \
+        && ./configure --prefix=$BUILD_PREFIX \
+        && make \
+        && make install)
+    touch libaec-stamp
+}
+
 
 function build_eccodes {
     if [ -e eccodes-stamp ]; then return; fi
