@@ -15,38 +15,52 @@ on:
 
 jobs:
   build:
-
+    name: "Build ${{ matrix.os }} (${{ matrix.arch }}) wheels"
     runs-on: ${{ matrix.os }}
-    defaults:
-      run:
-        shell: bash
+    timeout-minutes: 60  # should be long enough even on tags, but let's prevent hangs
     strategy:
       fail-fast: false
-      #matrix:
-      #  python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
-      #  os: [ubuntu-latest, macos-13]
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
-        os: [ubuntu-latest, macos-13, macos-14]
-        arch: [x86_64, arm64]
-        exclude:
-          - os: ubuntu-latest
-            arch: arm64
-        exclude:
-          - os: macos-14
+      python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        include:
+          - os: ubuntu-22.04
             arch: x86_64
-        exclude:
-          - os: macos-13
+          - os: macos-14
             arch: arm64
-      #matrix:
-      #  python-version: ["3.9", "3.10", "3.11", "3.12"]
-      #  include:
-      #    - os: ubuntu-22.04
-      #      arch: x86_64
-      #    - os: macos-14
-      #      arch: arm64
-      #    - os: macos-13
-      #      arch: x86_64
+          - os: macos-13
+            arch: x86_64
+  #build:
+  #  defaults:
+  #    run:
+  #      shell: bash
+  #  strategy:
+  #    fail-fast: false
+  #    #matrix:
+  #    #  python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+  #    #  os: [ubuntu-latest, macos-13]
+  #    matrix:
+  #      python-version: ["3.9", "3.10", "3.11", "3.12"]
+  #      os: [ubuntu-latest, macos-13, macos-14]
+  #      arch: [x86_64, arm64]
+  #      exclude:
+  #        - os: ubuntu-latest
+  #          arch: arm64
+  #      exclude:
+  #        - os: macos-14
+  #          arch: x86_64
+  #      exclude:
+  #        - os: macos-13
+  #          arch: arm64
+  #    #matrix:
+  #    #  python-version: ["3.9", "3.10", "3.11", "3.12"]
+  #    #  include:
+  #    #    - os: ubuntu-22.04
+  #    #      arch: x86_64
+  #    #    - os: macos-14
+  #    #      arch: arm64
+  #    #    - os: macos-13
+  #    #      arch: x86_64
+  #  runs-on: ${{ matrix.os }}
     env:
       REPO_DIR: pygrib
       PKG_NAME: pygrib
@@ -72,7 +86,6 @@ jobs:
     - name: Setup Environment variables
       run: |
         if [ "schedule" == "${{ github.event_name }}" ] || [ "master" == "$BUILD_COMMIT" ]; then echo "TOKEN=$SCIPY_WHEELS_NIGHTLY_ACCESS" >> $GITHUB_ENV; else echo "TOKEN=$MULTIBUILD_WHEELS_STAGING_ACCESS" >> $GITHUB_ENV; fi
-        if [ "x32" == "${{ matrix.platform }}" ];   then echo "PLAT=i686" >> $GITHUB_ENV; else echo "PLAT=x86_64" >> $GITHUB_ENV; fi
         if [ "macos-14" == "${{ matrix.os }}" ];    then echo "PLAT=arm64" >> $GITHUB_ENV; fi
         if [ "macos-latest" == "${{ matrix.os }}" ]; then echo "TRAVIS_OS_NAME=osx" >> $GITHUB_ENV; else echo "TRAVIS_OS_NAME=${{ matrix.os }}" >> $GITHUB_ENV; fi
         if [ "macos-13" == "${{ matrix.os }}" ]; then echo "TRAVIS_OS_NAME=osx" >> $GITHUB_ENV;  fi
