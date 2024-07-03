@@ -1,8 +1,8 @@
 # Define custom utilities
 # Test for OSX with [ -n "$IS_OSX" ]
 
-# Compile libs for macOS 10.9 or later
-export MACOSX_DEPLOYMENT_TARGET="10.9"
+# Compile libs for macOS 10.11 or later
+export MACOSX_DEPLOYMENT_TARGET="10.11"
 export ECCODES_VERSION="2.34.1"
 export OPENJPEG_VERSION="2.4.0"
 export LIBAEC_VERSION="1.0.6"
