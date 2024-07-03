@@ -70,6 +70,8 @@ function build_eccodes {
 function run_tests {
     cd ../pygrib/test
     #python test.py
+    pip install pytest
+    pytest -vv test.py test_latlons.py
     cd ..
     python utils/grib_list sampledata/rap.wrfnat.grib2 -s
 }
