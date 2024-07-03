@@ -3,7 +3,7 @@
 
 # Compile libs for macOS 10.11 or later
 export MACOSX_DEPLOYMENT_TARGET="10.11"
-export ECCODES_VERSION="2.34.1"
+export ECCODES_VERSION="2.32.1"
 export OPENJPEG_VERSION="2.4.0"
 export LIBAEC_VERSION="1.0.6"
 export PNG_VERSION="1.6.37"
