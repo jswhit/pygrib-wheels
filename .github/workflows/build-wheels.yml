@@ -15,7 +15,7 @@ on:
 
 jobs:
   build:
-    name: "Build ${{ matrix.os }} ${{ matrix.arch }} (${{ matrix.python-version }} wheels"
+    name: "Build ${{ matrix.os }} ${{ matrix.arch }} ${{ matrix.python-version }} wheels"
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60  # should be long enough even on tags, but let's prevent hangs
     strategy:
