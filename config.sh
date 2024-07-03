@@ -10,6 +10,28 @@ export PNG_VERSION="1.6.37"
 export ZLIB_VERSION="1.2.11"
 export PYGRIB_WHEEL=true
 
+function build_simple {
+    # Example: build_simple libpng $LIBPNG_VERSION \
+    #               https://download.sourceforge.net/libpng tar.gz \
+    #               --additional --configure --arguments
+    local name=$1
+    local version=$2
+    local url=$3
+    local ext=${4:-tar.gz}
+    local configure_args=${@:5}
+    if [ -e "${name}-stamp" ]; then
+        return
+    fi
+    local name_version="${name}-${version}"
+    local archive=${name_version}.${ext}
+    fetch_unpack $url/$archive
+    (cd $name_version \
+        && ./configure --prefix=$BUILD_PREFIX $configure_args \
+        && make -j4 \
+        && sudo make install)
+    touch "${name}-stamp"
+}
+
 function build_libs {
     build_libpng
     build_openjpeg
@@ -39,7 +61,7 @@ function build_libaec {
         && autoreconf -i \
         && ./configure --prefix=$BUILD_PREFIX \
         && make \
-        && make install)
+        && sudo make install)
     touch libaec-stamp
 }
 
@@ -56,7 +78,7 @@ function build_eccodes {
     cd build
     cmake -DCMAKE_INSTALL_PREFIX=$BUILD_PREFIX -DENABLE_FORTRAN=OFF -DENABLE_NETCDF=OFF -DENABLE_TESTS=OFF -DENABLE_JPG_LIBJASPER=OFF -DENABLE_JPG_LIBOPENJPEG=ON -DENABLE_PNG=ON -DENABLE_AEC=ON ../eccodes-${ECCODES_VERSION}-Source
     make -j2
-    make install
+    sudo make install
     cd ..
     if [ -n "$IS_OSX" ]; then
         # Fix eccodes library id bug
