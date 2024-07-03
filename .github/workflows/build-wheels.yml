@@ -21,22 +21,18 @@ jobs:
       run:
         shell: bash
     strategy:
-
       fail-fast: false
+      #matrix:
+      #  python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+      #  os: [ubuntu-latest, macos-13]
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
-        #os: [ubuntu-latest, macos-13]
-        os: [ubuntu-latest, macos-13, macos-14]
-        platform: [x64, arm64]
-        exclude:
+        include:
+          - os: ubuntu-22.04
+            arch: x86_64
           - os: macos-14
-            platform: x64 
-        exclude:
+            arch: arm64
           - os: macos-13
-            platform: arm64
-        exclude:
-          - os: ubuntu-latest
-            platform: arm64
+            arch: x86_64
     env:
       REPO_DIR: pygrib
       PKG_NAME: pygrib
