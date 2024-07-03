@@ -23,8 +23,7 @@ function pre_build {
     pip install cmake>=3.12
     cmake_exec=`which cmake`
     ln -fs ${cmake_exec} /usr/local/bin/cmake
-    ls -l /usr/local
-    mkdir -p /usr/local/lib
+    sudo mkdir -p /usr/local/lib
     build_libs
 }
 
