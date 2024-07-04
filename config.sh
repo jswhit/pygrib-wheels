@@ -32,14 +32,22 @@ function build_simple {
     touch "${name}-stamp"
 }
 
-function build_jpeg {
-    if [ -e jpeg-stamp ]; then return; fi
-    fetch_unpack http://ijg.org/files/jpegsrc.v${JPEG_VERSION}.tar.gz
-    (cd jpeg-${JPEG_VERSION} \
-        && ./configure --prefix=$BUILD_PREFIX \
-        && make -j4 \
-        && sudo make install)
-    touch jpeg-stamp
+function build_openjpeg {
+    if [ -e openjpeg-stamp ]; then return; fi
+    build_zlib
+    build_libpng
+    build_tiff
+    build_lcms2
+    local cmake=$(get_modern_cmake)
+    local archive_prefix="v"
+    if [ $(lex_ver $OPENJPEG_VERSION) -lt $(lex_ver 2.1.1) ]; then
+        archive_prefix="version."
+    fi
+    local out_dir=$(fetch_unpack https://github.com/uclouvain/openjpeg/archive/${archive_prefix}${OPENJPEG_VERSION}.tar.gz)
+    (cd $out_dir \
+        && $cmake -DCMAKE_INSTALL_PREFIX=$BUILD_PREFIX . \
+        && /usr/bin/sudo make install)
+    touch openjpeg-stamp
 }
 
 function build_libaec {
