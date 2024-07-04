@@ -93,6 +93,7 @@ jobs:
         if [ "ubuntu-latest" == "${{ matrix.os }}" ]; then
            sudo apt-get update
            sudo apt-get install -y sudo
+           which sudo
         fi
         source multibuild/common_utils.sh
         source multibuild/travis_steps.sh
