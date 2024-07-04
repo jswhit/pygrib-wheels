@@ -32,6 +32,29 @@ function build_simple {
     touch "${name}-stamp"
 }
 
+function build_jpeg {
+    if [ -e jpeg-stamp ]; then return; fi
+    fetch_unpack http://ijg.org/files/jpegsrc.v${JPEG_VERSION}.tar.gz
+    (cd jpeg-${JPEG_VERSION} \
+        && ./configure --prefix=$BUILD_PREFIX \
+        && make -j4 \
+        && sudo make install)
+    touch jpeg-stamp
+}
+
+function build_libaec {
+    if [ -e libaec-stamp ]; then return; fi
+    local root_name=libaec-1.0.4
+    local tar_name=${root_name}.tar.gz
+    # Note URL will change for each version
+    fetch_unpack https://gitlab.dkrz.de/k202009/libaec/uploads/ea0b7d197a950b0c110da8dfdecbb71f/${tar_name}
+    (cd $root_name \
+        && ./configure --prefix=$BUILD_PREFIX \
+        && make \
+        && sudo make install)
+    touch libaec-stamp
+}
+
 function build_libs {
     build_libpng
     build_openjpeg
