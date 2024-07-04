@@ -32,6 +32,16 @@ function build_simple {
     touch "${name}-stamp"
 }
 
+function build_jpeg {
+    if [ -e jpeg-stamp ]; then return; fi
+    fetch_unpack http://ijg.org/files/jpegsrc.v${JPEG_VERSION}.tar.gz
+    (cd jpeg-${JPEG_VERSION} \
+        && ./configure --prefix=$BUILD_PREFIX \
+        && make -j4 \
+        && /usr/bin/sudo make install)
+    touch jpeg-stamp
+}
+
 function build_openjpeg {
     if [ -e openjpeg-stamp ]; then return; fi
     build_zlib
