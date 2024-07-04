@@ -6,8 +6,9 @@ export OPENJPEG_VERSION="2.4.0"
 export PNG_VERSION="1.6.37"
 export ZLIB_VERSION="1.2.11"
 export LIBAEC_VERSION="1.0.6"
+export PYGRIB_WHEEL=true
 
-function build_simple {
+functio nbuild_simple {
     # Example: build_simple libpng $LIBPNG_VERSION \
     #               https://download.sourceforge.net/libpng tar.gz \
     #               --additional --configure --arguments
