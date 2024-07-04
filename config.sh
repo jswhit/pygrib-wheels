@@ -28,7 +28,7 @@ function build_simple {
     (cd $name_version \
         && ./configure --prefix=$BUILD_PREFIX $configure_args \
         && make -j4 \
-        && sudo make install)
+        && if [ -n "$IS_MACOS" ]; then /usr/bin/sudo make install; fi)
     touch "${name}-stamp"
 }
 
@@ -38,7 +38,7 @@ function build_jpeg {
     (cd jpeg-${JPEG_VERSION} \
         && ./configure --prefix=$BUILD_PREFIX \
         && make -j4 \
-        && sudo make install)
+        && if [ -n "$IS_MACOS" ]; then /usr/bin/sudo make install; fi)
     touch jpeg-stamp
 }
 
@@ -56,7 +56,7 @@ function build_openjpeg {
     local out_dir=$(fetch_unpack https://github.com/uclouvain/openjpeg/archive/${archive_prefix}${OPENJPEG_VERSION}.tar.gz)
     (cd $out_dir \
         && $cmake -DCMAKE_INSTALL_PREFIX=$BUILD_PREFIX . \
-        && sudo make install)
+        && if [ -n "$IS_MACOS" ]; then /usr/bin/sudo make install; fi)
     touch openjpeg-stamp
 }
 
@@ -69,7 +69,7 @@ function build_libaec {
     (cd $root_name \
         && ./configure --prefix=$BUILD_PREFIX \
         && make \
-        && sudo make install)
+        && if [ -n "$IS_MACOS" ]; then /usr/bin/sudo make install; fi)
     touch libaec-stamp
 }
 
@@ -102,7 +102,7 @@ function build_libaec {
         && autoreconf -i \
         && ./configure --prefix=$BUILD_PREFIX \
         && make \
-        && sudo make install)
+        && if [ -n "$IS_MACOS" ]; then /usr/bin/sudo make install; fi)
     touch libaec-stamp
 }
 
@@ -119,12 +119,12 @@ function build_eccodes {
     cd build
     cmake -DCMAKE_INSTALL_PREFIX=$BUILD_PREFIX -DENABLE_FORTRAN=OFF -DENABLE_NETCDF=OFF -DENABLE_TESTS=OFF -DENABLE_JPG_LIBJASPER=OFF -DENABLE_JPG_LIBOPENJPEG=ON -DENABLE_PNG=ON -DENABLE_AEC=ON ../eccodes-${ECCODES_VERSION}-Source
     make -j2
-    sudo make install
+    if [ -n "$IS_MACOS" ]; then /usr/bin/sudo make install; fi
     cd ..
     if [ -n "$IS_OSX" ]; then
         # Fix eccodes library id bug
         for lib in $(ls ${BUILD_PREFIX}/lib/libeccodes*.dylib); do
-            sudo install_name_tool -id $lib $lib
+            if [ -n "$IS_MACOS" ]; then sudo install_name_tool -id $lib $lib; fi
         done
     fi
     touch eccodes-stamp
