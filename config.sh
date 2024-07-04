@@ -8,7 +8,7 @@ export ZLIB_VERSION="1.3.1"
 export LIBAEC_VERSION="1.1.3"
 export PYGRIB_WHEEL=true
 
-function nbuild_simple {
+function build_simple {
     # Example: build_simple libpng $LIBPNG_VERSION \
     #               https://download.sourceforge.net/libpng tar.gz \
     #               --additional --configure --arguments
