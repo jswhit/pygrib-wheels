@@ -1,14 +1,11 @@
 # Define custom utilities
 # Test for OSX with [ -n "$IS_OSX" ]
 
-# Compile libs for macOS 10.11 or later
-#export MACOSX_DEPLOYMENT_TARGET="10.11"
-export ECCODES_VERSION="2.32.1"
-export OPENJPEG_VERSION="2.4.0"
-export LIBAEC_VERSION="1.0.6"
-export PNG_VERSION="1.6.37"
-export ZLIB_VERSION="1.2.11"
-export PYGRIB_WHEEL=true
+export ECCODES_VERSION="2.33.0"
+export OPENJPEG_VERSION="2.5.2"
+export PNG_VERSION="1.6.43"
+export ZLIB_VERSION="1.3.1"
+export LIBAEC_VERSION="1.1.3"
 
 function build_simple {
     # Example: build_simple libpng $LIBPNG_VERSION \
@@ -62,7 +59,7 @@ function build_openjpeg {
 
 function build_libaec {
     if [ -e libaec-stamp ]; then return; fi
-    local root_name=libaec-1.0.4
+    local root_name=libaec-1.0.6
     local tar_name=${root_name}.tar.gz
     # Note URL will change for each version
     fetch_unpack https://gitlab.dkrz.de/k202009/libaec/uploads/ea0b7d197a950b0c110da8dfdecbb71f/${tar_name}
@@ -94,7 +91,6 @@ function build_libaec {
     local root_name=v${LIBAEC_VERSION}
     local tar_name=libaec-${root_name}.tar.gz
     fetch_unpack https://gitlab.dkrz.de/k202009/libaec/-/archive/${root_name}/${tar_name}
-    #fetch_unpack https://gitlab.dkrz.de/k202009/libaec/uploads/45b10e42123edd26ab7b3ad92bcf7be2/libaec-1.0.6.tar.gz
     if [ -n "$IS_MACOS" ]; then
         brew install autoconf automake libtool
     fi
