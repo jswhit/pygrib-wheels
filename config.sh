@@ -7,7 +7,6 @@ export PNG_VERSION="1.6.43"
 export ZLIB_VERSION="1.3.1"
 export LIBAEC_VERSION="1.1.3"
 export PYGRIB_WHEEL=true
-export LCMS2_VERSION="2.7"
 
 function build_simple {
     # Example: build_simple libpng $LIBPNG_VERSION \
