@@ -22,24 +22,7 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
-        os: [ubuntu-latest, macos-13]
-        arch: [x86_64]
-        include:
-          - os: macos-14
-            arch: arm64
-            python-version: "3.10"
-          - os: macos-14
-            arch: arm64
-            python-version: "3.11"
-          - os: macos-14
-            arch: arm64
-            python-version: "3.12"
-          - os: macos-14
-            arch: arm64
-            python-version: "3.13"
-          - os: macos-14
-            arch: arm64
-            python-version: "3.14"
+        os: [ubuntu-latest, ubuntu-22.04-arm, macos-latest, macos-13]
     env:
       REPO_DIR: pygrib
       PKG_NAME: pygrib
@@ -65,12 +48,9 @@ jobs:
     - name: Setup Environment variables
       run: |
         if [ "schedule" == "${{ github.event_name }}" ] || [ "master" == "$BUILD_COMMIT" ]; then echo "TOKEN=$SCIPY_WHEELS_NIGHTLY_ACCESS" >> $GITHUB_ENV; else echo "TOKEN=$MULTIBUILD_WHEELS_STAGING_ACCESS" >> $GITHUB_ENV; fi
-        if [ "macos-14" == "${{ matrix.os }}" ];    then echo "PLAT=arm64" >> $GITHUB_ENV; fi
+        if [ "macos-latest" == "${{ matrix.os }}" ];    then echo "PLAT=arm64" >> $GITHUB_ENV; fi
         if [ "macos-latest" == "${{ matrix.os }}" ]; then echo "TRAVIS_OS_NAME=osx" >> $GITHUB_ENV; else echo "TRAVIS_OS_NAME=${{ matrix.os }}" >> $GITHUB_ENV; fi
         if [ "macos-13" == "${{ matrix.os }}" ]; then echo "TRAVIS_OS_NAME=osx" >> $GITHUB_ENV;  fi
-        if [ "macos-14" == "${{ matrix.os }}" ]; then echo "TRAVIS_OS_NAME=osx" >> $GITHUB_ENV;  fi
-        if [ "macos-14" == "${{ matrix.os }}" ]; then echo "MACOSX_DEPLOYMENT_TARGET=14.0" >> $GITHUB_ENV;  fi
-        if [ "macos-13" == "${{ matrix.os }}" ]; then echo "MACOSX_DEPLOYMENT_TARGET=11.0" >> $GITHUB_ENV;  fi
         if [ "schedule" == "${{ github.event_name }}" ]; then echo "TRAVIS_EVENT_TYPE=cron" >> $GITHUB_ENV; else echo "TRAVIS_EVENT_TYPE=${{ github.event_name }}" >> $GITHUB_ENV; fi
         if [ "schedule" == "${{ github.event_name }}" ]; then echo "BUILD_COMMIT=master" >> $GITHUB_ENV; else echo "BUILD_COMMIT=$BUILD_COMMIT" >> $GITHUB_ENV; fi
     - name: Setup Special Environment variables for Linux
