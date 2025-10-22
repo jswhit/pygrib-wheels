@@ -2,10 +2,11 @@
 # Test for OSX with [ -n "$IS_OSX" ]
 
 export ECCODES_VERSION="2.44.0"
-export OPENJPEG_VERSION="2.5.2"
-export PNG_VERSION="1.6.43"
+export OPENJPEG_VERSION="2.5.4"
+export PNG_VERSION="1.6.50"
 export ZLIB_VERSION="1.3.1"
-export LIBAEC_VERSION="1.1.3"
+export LIBAEC_VERSION="1.1.4"
+export LCMS2_VERSION="2.7" # 2.9 fails on macos-13
 export PYGRIB_WHEEL=true
 
 function build_simple {
