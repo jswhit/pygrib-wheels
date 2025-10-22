@@ -22,7 +22,12 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest, macos-15-intel]
+        include:
+          - python-osx-ver: "11.0"
+          - os: macos-15-intel
+            python-osx-ver: "10.9"
+
     env:
       REPO_DIR: pygrib
       PKG_NAME: pygrib
@@ -30,7 +35,8 @@ jobs:
       UNICODE_WIDTH: 32
       MB_PYTHON_VERSION: ${{ matrix.python-version }}
       TRAVIS_PYTHON_VERSION: ${{ matrix.python-version }}
-      MB_ML_VER: _2_28
+      MB_ML_VER: 2014   
+      #MB_ML_VER: _2_28
       TRAVIS_REPO_SLUG: ${{ github.repository }}
       TRAVIS_BRANCH: ${{ github.head_ref }}
       TRAVIS_PULL_REQUEST: ${{ github.event.number }}
