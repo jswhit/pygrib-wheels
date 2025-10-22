@@ -1,7 +1,7 @@
 # Define custom utilities
 # Test for OSX with [ -n "$IS_OSX" ]
 
-export ECCODES_VERSION="2.36.0"
+export ECCODES_VERSION="2.44.0"
 export OPENJPEG_VERSION="2.5.2"
 export PNG_VERSION="1.6.43"
 export ZLIB_VERSION="1.3.1"
