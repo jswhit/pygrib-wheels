@@ -22,7 +22,7 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
-        os: [ubuntu-latest, macos-latest, macos-15-intel]
+        os: [ubuntu-latest, macos-latest, macos-15-intel, ubuntu-22.04-arm]
         include:
           - python-osx-ver: "11.0"
           - os: macos-15-intel
@@ -60,9 +60,9 @@ jobs:
         if [ "schedule" == "${{ github.event_name }}" ]; then echo "TRAVIS_EVENT_TYPE=cron" >> $GITHUB_ENV; else echo "TRAVIS_EVENT_TYPE=${{ github.event_name }}" >> $GITHUB_ENV; fi
         if [ "schedule" == "${{ github.event_name }}" ]; then echo "BUILD_COMMIT=master" >> $GITHUB_ENV; else echo "BUILD_COMMIT=$BUILD_COMMIT" >> $GITHUB_ENV; fi
     - name: Setup Special Environment variables for Linux
-      if: startsWith(matrix.os,'ubuntu') && matrix.MB_ML_VER == 2010
+      if: startsWith(matrix.os,'ubuntu-latest') && matrix.MB_PYTHON_VER == 3.14
       run: |
-        echo "DOCKER_TEST_IMAGE=$(echo multibuild/xenial_$PLAT)" >> $GITHUB_ENV
+        echo "DOCKER_TEST_IMAGE=$(echo multibuild/noble_$PLAT)" >> $GITHUB_ENV
     - name: Print some Environment variable
       run: |
         echo "TRAVIS_BRANCH: ${TRAVIS_BRANCH}"
