@@ -31,7 +31,7 @@ jobs:
     env:
       REPO_DIR: pygrib
       PKG_NAME: pygrib
-      BUILD_COMMIT: rel2.1.7
+      BUILD_COMMIT: rel2.1.8
       UNICODE_WIDTH: 32
       MB_PYTHON_VERSION: ${{ matrix.python-version }}
       TRAVIS_PYTHON_VERSION: ${{ matrix.python-version }}
@@ -90,10 +90,10 @@ jobs:
         python -m pip install --upgrade pip
         build_wheel $REPO_DIR $PLAT
         # skip install_run for now (pending https://github.com/multi-build/docker-images/issues/53)
-        if [[ $MB_PYTHON_VERSION != "3.14" ]] && [[ "$TRAVIS_OS_NAME" != "ubuntu"* ]]; then
+        #if [[ $MB_PYTHON_VERSION != "3.14" ]] && [[ "$TRAVIS_OS_NAME" != "ubuntu"* ]]; then
         echo "------- INSTALL_RUN --------"
         install_run $PLAT
-        fi
+        #fi
         cd $TRAVIS_BUILD_DIR
         ls -l wheelhouse/pygrib*whl
     - name: Upload wheels to release
